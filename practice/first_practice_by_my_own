@@ -1,0 +1,124 @@
+select * 
+from job_postings_fact
+LIMIT 5;
+
+SELECT column_name, data_type
+FROM information_schema.columns
+WHERE table_name = 'job_postings_fact';
+
+
+SELECT table_name
+FROM information_schema.tables
+WHERE table_schema = 'public'; 
+
+SELECT column_name
+FROM information_schema.columns
+WHERE table_name = 'job_postings_fact'
+  AND table_schema = 'public';  -- or your specific schema if it's not public
+
+SELECT COUNT(*) FROM job_postings_fact;
+
+
+SELECT 
+  COUNT(*) FILTER (WHERE job_title_short IS NULL) AS job_title_nulls,
+  COUNT(*) FILTER (WHERE salary_year_avg IS NULL) AS salary_year_nulls
+FROM job_postings_fact;
+
+SELECT *
+FROM job_postings_fact
+WHERE salary_year_avg IS NOT NULL;
+
+
+
+SELECT 
+  job_title_short,
+  salary_year_avg,
+  COUNT(*) AS count
+FROM job_postings_fact
+GROUP BY job_title_short, salary_year_avg
+HAVING COUNT(*) > 1;
+
+
+
+ SELECT job_title_short, COUNT(*)
+FROM job_postings_fact
+GROUP BY job_title_short
+HAVING COUNT(*) > 1;
+
+
+SELECT DISTINCT company_id,job_title,salary_year_avg
+ FROM job_postings_fact
+ WHERE salary_year_avg IS NOT NULL AND
+ salary_year_avg >=500000
+ ORDER BY salary_year_avg DESC
+;
+
+
+SELECT 
+  MIN(salary_year_avg), MAX(salary_year_avg), AVG(salary_year_avg)
+FROM job_postings_fact;
+ 
+SELECT job_title_short, salary_year_avg
+FROM job_postings_fact
+WHERE salary_year_avg < 0 AND salary_year_avg IS NOT NULL
+  OR job_title_short IS NOT NULL;
+
+
+SELECT job_title_short, salary_year_avg
+FROM job_postings_fact
+WHERE (salary_year_avg < 0 AND salary_year_avg IS NOT NULL)
+   OR (job_title_short IS NOT NULL AND salary_year_avg IS NOT NULL);
+
+
+/*SELECT * FROM job_postings_fact LIMIT 10;
+SELECT DISTINCT job_title FROM job_postings_fact;
+SELECT COUNT(*) FROM job_postings_fact;
+SELECT COUNT(DISTINCT job_title_short) FROM job_postings_fact;
+*/
+
+
+SELECT job_title_short, COUNT(*)
+FROM job_postings_fact
+GROUP BY job_title_short
+HAVING COUNT(*) > 1;
+
+SELECT DISTINCT job_title_short
+FROM job_postings_fact;
+
+
+
+SELECT 
+  job_id,
+  job_title,
+  salary_year_avg,
+  job_location
+FROM job_postings_fact
+WHERE job_location = 'Remote'
+  AND job_title_short = 'Data Analyst'
+  AND salary_year_avg IS NOT NULL
+ORDER BY salary_year_avg DESC
+LIMIT 5;
+
+SELECT 
+    name,
+    CASE 
+        WHEN job_location = 'Anywhere' THEN 'Anywhere'
+        ELSE 'Onsite'
+    END AS job_type,
+    COUNT(*) AS number_of_postings
+FROM job_postings_fact
+LEFT JOIN company_dim 
+  ON job_postings_fact.company_id = company_dim.company_id
+WHERE job_title_short = 'Data Analyst'
+GROUP BY name, job_type
+ORDER BY number_of_postings DESC
+LIMIT 10;
+
+
+
+
+SELECT * 
+FROM skills_dim 
+LIMIT 1;
+
+
