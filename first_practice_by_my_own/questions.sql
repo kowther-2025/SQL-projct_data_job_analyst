@@ -39,10 +39,16 @@ FROM (
     WHERE job_postings_fact.job_title_short = 'Data Analyst'
       AND job_postings_fact.salary_year_avg IS NOT NULL
       AND job_postings_fact.salary_year_avg > 0
-    GROUP BY skills_dim.skills, job_postings_fact.job_location
+    GROUP BY 
+        skills_dim.skills,
+        CASE 
+            WHEN job_postings_fact.job_location = 'Anywhere' THEN 'Remote'
+            ELSE 'Onsite'
+        END
 ) ranked
-WHERE rank <= 10
+WHERE rank <= 5
 ORDER BY location_type, skill_demand DESC;
+
 
 
 
@@ -51,12 +57,13 @@ ORDER BY location_type, skill_demand DESC;
 SELECT 
     job_title,
     name AS company_name,
-    salary_year_avg
+    MAX(salary_year_avg) AS salary_year_avg
 FROM job_postings_fact
 JOIN company_dim ON job_postings_fact.company_id = company_dim.company_id
 WHERE 
     job_title ILIKE '%data analyst%'
     AND salary_year_avg IS NOT NULL
+GROUP BY job_title, name
 ORDER BY salary_year_avg DESC
 LIMIT 10;
 
