@@ -121,33 +121,49 @@ ORDER BY total_jobs DESC
 LIMIT 10;
 
 
--- Question 6: Which skills are most commonly required for the highest-paying Data Analyst roles in both remote and city-based jobs?
+-- Question 6: What are the top 5 skills demanded in the highest-paying (top 20%) Data Analyst roles, comparing remote and city-based positions?.
 
-SELECT *
-FROM (
-    SELECT 
-        skills_dim.skills AS skill_name,
-        location_type,
-        COUNT(*) AS skill_demand,
-        ROW_NUMBER() OVER (PARTITION BY location_type ORDER BY COUNT(*) DESC) AS rn
+
+WITH high_salary_jobs AS (
+    SELECT *
     FROM (
-        SELECT 
-            job_id,
-            CASE 
-                WHEN job_location ILIKE '%remote%' 
-                     OR job_location ILIKE '%work from home%' 
-                     OR job_location ILIKE '%anywhere%' 
-                THEN 'Remote'
-                ELSE 'City-based'
-            END AS location_type
+        SELECT *,   
+               NTILE(5) OVER (ORDER BY salary_year_avg DESC) AS salary_rank
         FROM job_postings_fact
         WHERE job_title_short = 'Data Analyst'
           AND salary_year_avg IS NOT NULL
           AND salary_year_avg > 0
-    ) AS filtered_jobs
-    JOIN skills_job_dim ON filtered_jobs.job_id = skills_job_dim.job_id
+    ) ranked_jobs
+    WHERE salary_rank = 1  -- top 20% highest-paying jobs
+),
+job_with_location AS (
+    SELECT 
+        job_id,
+        CASE 
+            WHEN job_location ILIKE '%remote%' 
+                 OR job_location ILIKE '%work from home%' 
+                 OR job_location ILIKE '%anywhere%' 
+            THEN 'Remote'
+            ELSE 'City-based'
+        END AS location_type
+    FROM high_salary_jobs
+),
+skills_count AS (
+    SELECT
+        skills_dim.skills AS skill_name,
+        job_with_location.location_type,
+        COUNT(*) AS skill_demand,
+        ROW_NUMBER() OVER (
+            PARTITION BY job_with_location.location_type
+            ORDER BY COUNT(*) DESC
+        ) AS rank
+    FROM job_with_location
+    JOIN skills_job_dim ON job_with_location.job_id = skills_job_dim.job_id
     JOIN skills_dim ON skills_job_dim.skill_id = skills_dim.skill_id
-    GROUP BY skill_name, location_type
-) AS ranked
-WHERE rn <= 5
+    GROUP BY skills_dim.skills, job_with_location.location_type
+)
+SELECT skill_name, location_type, skill_demand
+FROM skills_count
+WHERE rank <= 5
 ORDER BY location_type, skill_demand DESC;
+
