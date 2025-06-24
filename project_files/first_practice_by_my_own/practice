@@ -40,6 +40,7 @@ HAVING COUNT(*) > 1;
 
 
 
+
  SELECT job_title_short, COUNT(*)
 FROM job_postings_fact
 GROUP BY job_title_short
@@ -120,5 +121,4 @@ LIMIT 10;
 SELECT * 
 FROM skills_dim 
 LIMIT 1;
-
 
