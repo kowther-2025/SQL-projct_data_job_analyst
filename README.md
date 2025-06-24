@@ -65,7 +65,7 @@ LIMIT 10;
 | SQL Server   | 336                |
 
 
-![Top 10 Skills](images/Top10skills.png)
+![Top 10 Skills](project_files/images/Top10skills.png)
 Here is the bar chart showing the Top 10 Most In-Demand Skills for Data Analysts, based on job postings with salary data.
 
 # Key Findings & Insights
@@ -110,7 +110,8 @@ FROM (
 WHERE rank <= 5
 ORDER BY location_type, skill_demand DESC;
 ```
-![remote vs onsite](images/onsite_vs_remote.png)
+![remote vs onsite](project_files/images/onsite_vs_remote.png)
+
 Side-by-side comparison of top skills for Onsite vs Remote Data Analyst roles, highlighting demand differences by location type.
 
 # Key Findings & Insights
@@ -151,7 +152,8 @@ To keep this section concise, I’ve included only the top 5 roles in the table 
 
 Other high-paying roles from GradBay, TikTok, Walmart, and Pinterest (salaries $230K–$240K) are reflected in the chart above.
 
-![remote vs onsite](images/highest_salary.png)
+![remote vs onsite](project_files/images/highest_salary.png)
+ 
 Here is the bar chart visualizing the Top 10 Highest-Paying Data Analyst Roles by average annual salary. 
 # Key Findings & Insights
 - Outlier Salary: Mantys offers $650K for a Data Analyst role — far above market, likely due to unique responsibilities or equity.
@@ -244,12 +246,17 @@ GROUP BY company_name
 ORDER BY total_jobs DESC
 LIMIT 10;
 ```
-![remote vs onsite](images/company%20name.png)This chart visually reinforces these findings, making it easy to compare each company’s approach to remote and onsite work. 
+![remote vs onsite](project_files/images/company%20name.png)This chart visually reinforces these findings, making it easy to compare each company’s approach to remote and onsite work. 
 # Key Findings & Insights
-- Emprego has the highest total number of jobs, but all are onsite—no remote positions.
-- Dice stands out for offering the most remote jobs among the companies, even though its total job count is lower than Emprego and Robert Half.
-- Robert Half and Insight Global have a strong presence in both remote and onsite jobs, but onsite roles dominate.
-- Citi has a high number of onsite jobs with almost no remote opportunities.
+- Emprego has the highest total number of jobs, all onsite—no remote positions.
+
+- Get It Recruit – IT leads in remote roles, with nearly all positions remote.
+
+- Dice offers a significant number of remote jobs, though still fewer than onsite.
+
+- Robert Half and Insight Global include remote roles, but onsite jobs dominate.
+
+- Citi offers almost exclusively onsite roles.
 
 This suggests that while some companies are embracing remote work, the majority of job opportunities—especially from the largest employers—are still onsite.
 
@@ -312,7 +319,7 @@ ORDER BY location_type, skill_demand DESC;
 “Onsite” refers to roles based in a physical city or office location, while “Remote” refers to roles that allow working from home or any location. This table shows the top skills demanded in the highest-paying jobs by work setting.
 
 
-![remote vs onsite](images/Q6.png)
+![remote vs onsite](project_files/images/Q6.png)
 This visualization makes it easy to quickly identify which skills are most valued in the dataset.
 
 # Key findings
