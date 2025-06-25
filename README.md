@@ -5,11 +5,8 @@ This project analyzes job postings data from 2023 to uncover key trends in hirin
 
 This project was inspired by a SQL analysis tutorial by Luke Barousse and uses a 2023 job postings dataset. While the initial setup followed the tutorial, I expanded the analysis by crafting original questions and deriving unique insights. I used ChatGPT to validate my thinking, explore alternative approaches, and assist with visual storytelling. Visualizations were created using both ChatGPT and Julius.ai. The project was developed in SQL and supported by tools such as VS Code and GitHub.
  
-<<<<<<< HEAD
-- SQL queries. check them out here; [first_practice_by_my_own](/first_practice_by_my_own/questions.sql).
-=======
 - SQL queries. check them out here; [project_files](/project_files/first_practice_by_my_own/questions.sql)
->>>>>>> 8e28897 (main)
+
 
 # Background
 The world of work is evolving—fast. With the rise of remote roles, tech-driven hiring, and shifting skill demands, 2023 marked a pivotal year in the job market. This project dives into real job postings to decode what employers truly value today. By analyzing thousands of listings with SQL, we uncover the trends shaping modern careers—from the hottest roles to the skills that open doors.
