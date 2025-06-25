@@ -1,7 +1,7 @@
 
 # Introduction
  Project Introduction: Job Postings 2023
-This project analyzes job postings data from 2023 to uncover key trends in hiring, skills demand, work formats, and employment types. Using structured SQL methods—such as joins, subqueries, and aggregations—it transforms raw data into clear, actionable insights, offering a sharp view of the evolving job market.
+This project analyzes job postings data from 2023 to uncover key trends in hiring, skills demand, work formats, and employment types. Using structured SQL methods, such as joins, subqueries, and aggregations it transforms raw data into clear, actionable insights, offering a sharp view of the evolving job market.
 
 This project was inspired by a SQL analysis tutorial by Luke Barousse and uses a 2023 job postings dataset. While the initial setup followed the tutorial, I expanded the analysis by crafting original questions and deriving unique insights. I used ChatGPT to validate my thinking, explore alternative approaches, and assist with visual storytelling. Visualizations were created using both ChatGPT and Julius.ai. The project was developed in SQL and supported by tools such as VS Code and GitHub.
  
