@@ -9,7 +9,7 @@ This project was inspired by a SQL analysis tutorial by Luke Barousse and uses a
 
 
 # Background
-The world of work is evolving—fast. With the rise of remote roles, tech-driven hiring, and shifting skill demands, 2023 marked a pivotal year in the job market. This project dives into real job postings to decode what employers truly value today. By analyzing thousands of listings with SQL, we uncover the trends shaping modern careers—from the hottest roles to the skills that open doors.
+The world of work is evolving fast. With the rise of remote roles, tech-driven hiring, and shifting skill demands, 2023 marked a pivotal year in the job market. This project dives into real job postings to decode what employers truly value today. By analyzing thousands of listings with SQL, we uncover the trends shaping modern careers from the hottest roles to the skills that open doors.
 ### The questions I aim to answer through my SQL queries;
 1. What are the top 10 most in-demand skills for Data Analysts, based on current job market trends?
 
